@@ -1,0 +1,4 @@
+[2025-06-25 14:45:32,123] 13 root - INFO - Initiate Data Ingestion
+[2025-06-25 14:45:37,072] 51 root - INFO - Performed train-test split
+[2025-06-25 14:45:37,269] 61 root - INFO - Split into train-test sets
+[2025-06-25 14:45:37,270] 15 root - INFO - Data Ingestion Completed
