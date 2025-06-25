@@ -1,0 +1,13 @@
+[2025-06-25 16:14:33,327] 19 root - INFO - Initiate Data Ingestion
+[2025-06-25 16:14:39,587] 51 root - INFO - Performed train-test split
+[2025-06-25 16:14:39,776] 61 root - INFO - Split into train-test sets
+[2025-06-25 16:14:39,778] 21 root - INFO - Data Ingestion Completed
+[2025-06-25 16:14:39,778] 26 root - INFO - Initiate Data Validation
+[2025-06-25 16:14:39,891] 29 root - INFO - Required number of columns: 23
+[2025-06-25 16:14:39,891] 30 root - INFO - Current number of columns: 31
+[2025-06-25 16:14:39,891] 29 root - INFO - Required number of columns: 23
+[2025-06-25 16:14:39,891] 30 root - INFO - Current number of columns: 31
+[2025-06-25 16:14:40,267] 28 root - INFO - Data Validation Completed
+[2025-06-25 16:14:40,267] 33 root - INFO - Initiate Data Transformation
+[2025-06-25 16:14:40,267] 39 root - INFO - Initiating Data Transformation
+[2025-06-25 16:14:40,400] 28 root - INFO - Initializing KNN Imputer

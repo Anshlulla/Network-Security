@@ -28,12 +28,12 @@ if __name__ == "__main__":
         logging.info("Data Validation Completed")
 
         data_transformation_config = DataTransformationConfig(training_pipeline_config)
-        data_transformation = DataTransformation(data_validation_artifact=data_transformation_config,
-                                                 data_transformation_config=data_ingestion_config)
+        data_transformation = DataTransformation(data_validation_artifact=data_validation_artifact,
+                                                 data_transformation_config=data_transformation_config)
         logging.info("Initiate Data Transformation")
         data_transformation_artifact = data_transformation.initiate_data_transformation()
         logging.info("Data Transformation Completed")
-        
+
     except Exception as e:
         raise NetworkSecurityException(e, sys)
     

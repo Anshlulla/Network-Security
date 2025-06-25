@@ -37,6 +37,7 @@ class DataTransformation:
     def initiate_data_transformation(self) -> DataTransformationArtifact:
         try:
             logging.info("Initiating Data Transformation")
+            self.data_validation_artifact.valid_train_file_path
             train_df = DataTransformation.read_data(self.data_validation_artifact.valid_train_file_path)
             test_df = DataTransformation.read_data(self.data_validation_artifact.valid_test_file_path)
 
@@ -50,8 +51,8 @@ class DataTransformation:
             X_train_transformer = preprocessor.fit_transform(X_train)
             X_test_transformer = preprocessor.transform(X_test)
 
-            train_arr = np.c_(X_train_transformer, np.array(y_train))
-            test_arr = np.c_(X_test_transformer, np.array(y_test))
+            train_arr = np.c_[X_train_transformer, np.array(y_train)]
+            test_arr = np.c_[X_test_transformer, np.array(y_test)]
 
             save_np_array(self.data_transformation_config.transformed_train_file_path, train_arr)
             save_np_array(self.data_transformation_config.transformed_test_file_path, test_arr)

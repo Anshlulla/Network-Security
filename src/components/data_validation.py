@@ -83,7 +83,7 @@ class DataValidation:
             os.makedirs(dir_path, exist_ok=True)
             test_df.to_csv(self.data_validation_config.valid_test_file_path, index=False, header=True)
 
-            data_validation_config = DataValidationArtifact(
+            data_validation_artifact = DataValidationArtifact(
                 validation_status=status,
                 valid_train_file_path=self.data_validation_config.valid_train_file_path,
                 valid_test_file_path=self.data_validation_config.valid_test_file_path,
@@ -95,4 +95,4 @@ class DataValidation:
         except Exception as e:
             raise NetworkSecurityException(e, sys)
         
-        return data_validation_config
+        return data_validation_artifact
