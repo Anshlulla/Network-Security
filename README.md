@@ -75,8 +75,7 @@ The prediction component takes new, unseen network data and applies the trained 
      docker build -t network-security .
      ```
    - Push to AWS ECR (see your AWS setup for details).
-   - Deploy on EC2 (details in deployment scripts or your CI/CD pipeline).
-
+   - Deploy on EC2 (see your AWS setup for details).
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for improvements or new features.
