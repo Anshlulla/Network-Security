@@ -1,4 +1,3 @@
-from re import M
 from src.exception.exception import NetworkSecurityException
 from src.logging.logger import logging
 import sys

@@ -7,7 +7,7 @@ import sys
 def evaluate_models(X_train, y_train, X_test, y_test, models, params) -> dict:
     try:
         report = {}
-        print(len(models), len(params))
+        
         for i in range(len(list(models))):
             model = list(models.values())[i]
             param_grid = params[list(models.keys())[i]]

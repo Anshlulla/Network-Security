@@ -4,6 +4,8 @@ from matplotlib.pyplot import get
 import numpy as np
 import sys
 import pandas as pd
+import mlflow
+import mlflow.sklearn
 from src.exception.exception import NetworkSecurityException
 from src.logging.logger import logging
 from src.constants.constants import *
@@ -15,6 +17,8 @@ from src.utils.evaluate_models import evaluate_models
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier, GradientBoostingClassifier
+import dagshub
+dagshub.init(repo_owner='anshlulla26', repo_name='Network-Security', mlflow=True)
 
 class ModelTrainer:
     def __init__(self, data_transformation_artifact: DataTransformationArtifact, 
@@ -67,12 +71,17 @@ class ModelTrainer:
             train_classification_metrics = get_classification_score(y_train, y_pred_train)
             test_classification_metrics = get_classification_score(y_test, y_pred_test)
 
+            self.track_mlflow(best_model, train_classification_metrics, "train")
+            self.track_mlflow(best_model, test_classification_metrics, "test")
+
             preprocessor = load_pkl_file(self.data_transformation_artifact.transformed_object_file_path)
             model_dir_path = os.path.dirname(self.model_trainer_config.trained_model_file_path)
             os.makedirs(model_dir_path, exist_ok=True)
 
             network_model = NetworkModel(preprocessor, best_model)
             save_pkl_file(self.model_trainer_config.trained_model_file_path, network_model)
+            
+            save_pkl_file("final_model/model.pkl", best_model)
 
             model_trainer_artifact = ModelTrainerArtifact(
                 trained_model_file_path=self.model_trainer_config.trained_model_file_path,
@@ -84,6 +93,20 @@ class ModelTrainer:
         
         except Exception as e:
             raise NetworkSecurityException(e, sys)
+    
+    def track_mlflow(self, best_model, classification_metrics, set):
+        with mlflow.start_run():
+            f1_score = classification_metrics.f1_score
+            recall_score = classification_metrics.recall_score
+            precision_score = classification_metrics.precision_score
+            accuracy_score = classification_metrics.accuracy_score
+
+            mlflow.log_metric(f"{set}_f1_score", f1_score)
+            mlflow.log_metric(f"{set}_precision_score", precision_score)
+            mlflow.log_metric(f"{set}_recall_score", recall_score)
+            mlflow.log_metric(f"{set}_accuracy_score", accuracy_score)
+            mlflow.sklearn.log_model(best_model, "model")
+
     
     def initiate_model_trainer(self) -> ModelTrainerArtifact:
         try:
