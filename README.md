@@ -79,7 +79,3 @@ The prediction component takes new, unseen network data and applies the trained 
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for improvements or new features.
-
-## License
-
-This project is licensed under the MIT License.
