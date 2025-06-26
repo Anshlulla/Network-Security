@@ -65,7 +65,9 @@ The prediction component takes new, unseen network data and applies the trained 
    ```
 
 3. **Run the pipeline:**
-   - (Add usage instructions or entrypoint command here, e.g., `python main.py`)
+   - ```bash
+     python main.py
+     ```
 
 4. **Docker & Deployment:**
    - Build Docker image:
