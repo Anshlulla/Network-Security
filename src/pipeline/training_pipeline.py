@@ -1,6 +1,7 @@
 import os
 import sys
 import warnings
+from src.cloud.s3_sync import S3Sync
 from src.components import data_validation
 from src.components import data_ingestion
 from src.exception.exception import NetworkSecurityException
@@ -16,6 +17,7 @@ warnings.filterwarnings("ignore")
 class TrainingPipeline:
     def __init__(self):
         self.training_pipeline_config = TrainingPipelineConfig()
+        self.s3_sync = S3Sync()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
@@ -68,12 +70,31 @@ class TrainingPipeline:
         
         return model_trainer_artifact
     
+    def sync_artifact_dir_to_s3(self):
+        try:
+            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/artifact/{self.training_pipeline_config.timestamp}"
+            self.s3_sync.sync_folder_to_s3(folder=self.training_pipeline_config.artifacts_dir, 
+                                   aws_bucket_url=aws_bucket_url)
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
+
+    def sync_saved_model_to_s3(self):
+        try:
+            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/final_model/{self.training_pipeline_config.timestamp}"
+            self.s3_sync.sync_folder_to_s3(folder=self.training_pipeline_config.model_dir, 
+                                   aws_bucket_url=aws_bucket_url)
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
+    
     def run_pipeline(self) -> ModelTrainerArtifact:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact)
             data_transformation_artifact = self.start_data_transformation(data_validation_artifact)
             model_trainer_artifact = self.start_model_trainer(data_transformation_artifact)
+
+            self.sync_artifact_dir_to_s3()
+            self.sync_saved_model_to_s3()
         except Exception as e:
             raise NetworkSecurityException(e, sys)
         
