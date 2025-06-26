@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from sklearn.metrics import accuracy_score
 
 @dataclass
 class DataIngestionArtifact:
@@ -25,6 +26,7 @@ class ClassificationMetricArtifact:
     f1_score: float
     precision_score: float
     recall_score: float
+    accuracy_score: float
     
 @dataclass
 class ModelTrainerArtifact:

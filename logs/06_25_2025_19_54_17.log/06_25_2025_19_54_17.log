@@ -1,0 +1,18 @@
+[2025-06-25 19:54:21,261] 22 root - INFO - Initiate Data Ingestion
+[2025-06-25 19:54:27,957] 51 root - INFO - Performed train-test split
+[2025-06-25 19:54:28,148] 61 root - INFO - Split into train-test sets
+[2025-06-25 19:54:28,150] 24 root - INFO - Data Ingestion Completed
+[2025-06-25 19:54:28,150] 29 root - INFO - Initiate Data Validation
+[2025-06-25 19:54:28,347] 29 root - INFO - Required number of columns: 23
+[2025-06-25 19:54:28,347] 30 root - INFO - Current number of columns: 31
+[2025-06-25 19:54:28,348] 29 root - INFO - Required number of columns: 23
+[2025-06-25 19:54:28,348] 30 root - INFO - Current number of columns: 31
+[2025-06-25 19:54:28,817] 31 root - INFO - Data Validation Completed
+[2025-06-25 19:54:28,817] 36 root - INFO - Initiate Data Transformation
+[2025-06-25 19:54:28,817] 39 root - INFO - Initiating Data Transformation
+[2025-06-25 19:54:29,021] 28 root - INFO - Initializing KNN Imputer
+[2025-06-25 19:54:29,043] 36 root - INFO - Saved numpy array as .npy file
+[2025-06-25 19:54:29,046] 36 root - INFO - Saved numpy array as .npy file
+[2025-06-25 19:54:29,054] 56 root - INFO - Saved pickle object as .pkl file
+[2025-06-25 19:54:29,057] 38 root - INFO - Data Transformation Completed
+[2025-06-25 19:54:29,057] 43 root - INFO - Initiated Model Training

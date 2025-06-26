@@ -39,7 +39,7 @@ PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 
 
 """
-Data Transformation related constant start with DATA_TRANSFORMATION VAR NAME
+    Data Transformation related constant start with DATA_TRANSFORMATION VAR NAME
 """
 DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR: str = "transformed"
@@ -57,7 +57,7 @@ DATA_TRANSFORMATION_TEST_FILE_PATH: str = "test.npy"
 
 
 """
-Model Trainer ralated constant start with MODE TRAINER VAR NAME
+    Model Trainer ralated constant start with MODE TRAINER VAR NAME
 """
 
 MODEL_TRAINER_DIR_NAME: str = "model_trainer"
